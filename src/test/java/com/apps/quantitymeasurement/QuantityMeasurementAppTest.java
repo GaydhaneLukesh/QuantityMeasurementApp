@@ -4,33 +4,43 @@
 
 package com.apps.quantitymeasurement;
 
+import com.apps.quantitymeasurement.QuantityMeasurementApp.Feet;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class QuantityMeasurementAppTest {
 
     @Test
-    void testMainOutputPass(){
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
-        QuantityMeasurementApp.main(new String[]{});
-        assertEquals(
-                "Welcome to Quantity Measurement App\r\n", outputStream.toString()
-        );
+    public void testFeetEquality_SameValue() {
+        Feet f1 = new Feet(1.0);
+        Feet f2 = new Feet(1.0);
+        assertTrue(f1.equals(f2));
     }
 
     @Test
-    void testMainOutputFail(){
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
-        QuantityMeasurementApp.main(new String[]{});
-        assertNotEquals(
-                "Hello World\r\n", outputStream.toString()
-        );
+    public void testFeetEquality_DifferentValue(){
+        Feet f1 = new Feet(1.0);
+        Feet f2 = new Feet(2.0);
+        assertFalse(f1.equals(f2));
+    }
+
+    @Test
+    public void testFeetEquality_NullComparison() {
+        Feet f1 = new Feet(1.0);
+        assertFalse(f1.equals(null));
+    }
+
+    @Test
+    public void testFeetEquality_DifferentClass(){
+        Feet f1 = new Feet(1.0);
+        String str = "1.0";
+        assertFalse(f1.equals(str));
+    }
+
+    @Test
+    public void testFeetEquality_SameReference(){
+        Feet f1 = new Feet(1.0);
+        assertTrue(f1.equals(f1));
     }
 }
