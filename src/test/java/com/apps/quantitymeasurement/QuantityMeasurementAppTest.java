@@ -202,5 +202,4 @@ public class QuantityMeasurementAppTest {
             new Length(1.0, null);
         });
     }
-
 }
