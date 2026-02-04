@@ -22,5 +22,4 @@ public class QuantityMeasurementApp {
                 1.0, LengthUnit.FEET,
                 12.0,LengthUnit.INCHES);
     }
-
 }

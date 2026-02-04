@@ -54,5 +54,4 @@ public class Length {
             return conversionFactor;
         }
     }
-
 }
