@@ -16,7 +16,7 @@ public class Length {
     }
 
     private double convertToBaseUnit(){
-        return value*unit.getConversionFactor();
+        return Math.round(value*unit.getConversionFactor() *100.0)/100.0;
     }
 
     public boolean compare(Length thatLength){
@@ -41,7 +41,9 @@ public class Length {
 
     public enum LengthUnit{
         FEET(12.0),
-        INCHES(1.0);
+        INCHES(1.0),
+        YARDS(36.0),
+        CENTIMETERS(0.393701);
 
         private final double conversionFactor;
 
@@ -51,11 +53,5 @@ public class Length {
         public double getConversionFactor(){
             return conversionFactor;
         }
-    }
-
-    public static void main(String[] args) {
-        Length l1 = new Length(1.1, LengthUnit.FEET);
-        Length l2 = new Length(12.0, LengthUnit.INCHES);
-        System.out.println(l1.equals(l2));
     }
 }
