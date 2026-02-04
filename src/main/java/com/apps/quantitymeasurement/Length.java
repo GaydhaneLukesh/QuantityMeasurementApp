@@ -19,6 +19,13 @@ public class Length {
         return Math.round(value*unit.getConversionFactor() *100.0)/100.0;
     }
 
+    public double convertTo(LengthUnit targetUnit){
+        if(targetUnit == null) throw new IllegalArgumentException(" Target unit cannot be null");
+
+        double valueOfBaseUnit = this.value * this.unit.getConversionFactor();
+        return valueOfBaseUnit / targetUnit.getConversionFactor();
+    }
+
     public boolean compare(Length thatLength){
         return Double.compare(
                 this.convertToBaseUnit(),

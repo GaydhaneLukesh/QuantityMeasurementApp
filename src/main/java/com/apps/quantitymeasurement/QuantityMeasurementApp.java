@@ -17,9 +17,21 @@ public class QuantityMeasurementApp {
         System.out.println(l1.equals(l2));
     }
 
+    public static void demonstrateLengthConversion(
+            double value,
+            LengthUnit fromUnit,
+            LengthUnit toTargetUnit
+    ){
+        Length l = new Length(value, fromUnit);
+        double resultValue = l.convertTo(toTargetUnit);
+        System.out.println(value+" "+fromUnit+" = "+resultValue+" "+toTargetUnit);
+    }
+
     public static void main(String[] args) {
         demonstrateLengthComparison(
                 1.0, LengthUnit.FEET,
                 12.0,LengthUnit.INCHES);
+
+        demonstrateLengthConversion(5.0, LengthUnit.YARDS, LengthUnit.INCHES);
     }
 }
