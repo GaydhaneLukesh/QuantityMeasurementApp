@@ -15,15 +15,30 @@ public class Length {
         this.unit = unit;
     }
 
+    public double getValue() {
+        return value;
+    }
+
+    public LengthUnit getUnit() {
+        return unit;
+    }
+
     private double convertToBaseUnit(){
         return Math.round(value*unit.getConversionFactor() *100.0)/100.0;
     }
 
-    public double convertTo(LengthUnit targetUnit){
+
+    public Length convertTo(LengthUnit targetUnit){
         if(targetUnit == null) throw new IllegalArgumentException(" Target unit cannot be null");
 
-        double valueOfBaseUnit = this.value * this.unit.getConversionFactor();
-        return valueOfBaseUnit / targetUnit.getConversionFactor();
+        double valueOfBaseUnit = this.value * this.unit.getConversionFactor() ;
+        double convertedValue = Math.round(valueOfBaseUnit / targetUnit.getConversionFactor() *100.0)/100.0;
+        return new Length(convertedValue, targetUnit);
+    }
+
+    @Override
+    public String toString() {
+        return ""+value+" "+unit;
     }
 
     public boolean compare(Length thatLength){
