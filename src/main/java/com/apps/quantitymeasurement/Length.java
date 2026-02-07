@@ -9,7 +9,7 @@ public class Length {
     private LengthUnit unit;
 
     public Length(double value, LengthUnit unit){
-        if(Double.isNaN(value)) throw new IllegalArgumentException("This exception is thrown because value is not valid(Numeric)");
+        if(Double.isNaN(value) || Double.isInfinite(value)) throw new IllegalArgumentException("Invalid numeric value");
         if(unit == null) throw new IllegalArgumentException("This exception is thrown because Unit is provided as null");
         this.value = value;
         this.unit = unit;

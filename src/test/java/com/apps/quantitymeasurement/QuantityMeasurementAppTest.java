@@ -259,6 +259,16 @@ public class QuantityMeasurementAppTest {
     }
 
     @Test
+    public void testConversion_NaNOrInfinite_Throws(){
+        assertThrows(IllegalArgumentException.class, ()->
+                new Length(Double.NaN, LengthUnit.FEET));
+        assertThrows(IllegalArgumentException.class, ()->
+                new Length(Double.POSITIVE_INFINITY, LengthUnit.FEET));
+        assertThrows(IllegalArgumentException.class, ()->
+                new Length(Double.NEGATIVE_INFINITY, LengthUnit.FEET));
+    }
+
+    @Test
     public void testConversion_PrecisionTolerance(){
         Length l = new Length(1.0, LengthUnit.FEET);
         assertNotEquals(30.479999, l.convertTo(LengthUnit.CENTIMETERS).getValue());
