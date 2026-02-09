@@ -4,6 +4,8 @@
 
 package com.apps.quantitymeasurement;
 
+import static com.apps.quantitymeasurement.Length.LengthUnit.*;
+
 public class Length {
     private double value;
     private LengthUnit unit;
@@ -46,15 +48,16 @@ public class Length {
     }
 
     public Length add(Length secondlength, LengthUnit targetUnit){
+        if(targetUnit == null) throw new IllegalArgumentException("Please, Enter a valid targetUnit");
         return addAndConvert(secondlength, targetUnit);
     }
 
     private Length addAndConvert(Length secondlength, LengthUnit targetUnit) {
         double base1 = this.value * this.unit.getConversionFactor();
-        double base2 = secondlength.value * this.unit.getConversionFactor();
+        double base2 = secondlength.value * secondlength.unit.getConversionFactor();
         double baseValueInInches = base1 + base2;
 
-        double resultValue = Math.round(convertFromBaseToTargetUnit(baseValueInInches, targetUnit));
+        double resultValue = Math.round(convertFromBaseToTargetUnit(baseValueInInches, targetUnit) *1000.0)/1000.0;
         return new Length(resultValue, targetUnit);
     }
 
