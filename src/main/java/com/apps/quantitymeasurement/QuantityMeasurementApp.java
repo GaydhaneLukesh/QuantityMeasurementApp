@@ -4,8 +4,6 @@
 
 package com.apps.quantitymeasurement;
 
-import com.apps.quantitymeasurement.Length.LengthUnit;
-
 public class QuantityMeasurementApp {
 
     public static boolean demonstrateLengthEquality(Length length1, Length length2){
@@ -38,6 +36,10 @@ public class QuantityMeasurementApp {
         return length1.add(length2);
     }
 
+    public static Length demonstrateLengthAddition(Length length1, Length length2, LengthUnit targetLength){
+        return length1.add(length2, targetLength);
+    }
+
     public static void main(String[] args) {
         Length length1 = new Length(1.0, LengthUnit.FEET);
         Length length2 = new Length(12.0, LengthUnit.INCHES);
@@ -49,5 +51,6 @@ public class QuantityMeasurementApp {
         System.out.println(demonstrateLengthConversion(5.0, LengthUnit.YARDS, LengthUnit.INCHES));
         System.out.println(demonstrateLengthConversion(length1, LengthUnit.INCHES));
         System.out.println(length1+" + "+length2+" = "+demonstrateLengthAddition(length1, length2));
+        System.out.println(length1+" + "+length2+" = "+demonstrateLengthAddition(length1, length2, LengthUnit.CENTIMETERS));
     }
 }
