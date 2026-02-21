@@ -4,7 +4,7 @@
 
 package com.apps.quantitymeasurement.genericEnum;
 
-import com.apps.quantitymeasurement.quantityInterface.IMeasurable;
+import com.apps.quantitymeasurement.IMeasurable;
 
 public enum LengthUnit implements IMeasurable {
     FEET(12.0),

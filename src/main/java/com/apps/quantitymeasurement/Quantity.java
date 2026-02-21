@@ -2,9 +2,7 @@
  * @author:LukeshGaydhane
  */
 
-package com.apps.quantitymeasurement.quantityInterface.impl;
-
-import com.apps.quantitymeasurement.quantityInterface.IMeasurable;
+package com.apps.quantitymeasurement;
 
 public class Quantity<U extends IMeasurable>{
     private double value;
@@ -16,7 +14,6 @@ public class Quantity<U extends IMeasurable>{
         this.value = value;
         this.unit = unit;
     }
-
 
     public double getValue() {
         return value;
@@ -43,6 +40,7 @@ public class Quantity<U extends IMeasurable>{
                 thatQuantity.unit.convertToBaseUnit(thatQuantity.value)
         ) == 0;
     }
+
     @Override
     public int hashCode(){
         return Double.hashCode(this.unit.convertToBaseUnit(this.value));
