@@ -2,9 +2,11 @@
  * @author:LukeshGaydhane
  */
 
-package com.apps.quantitymeasurement;
+package com.apps.quantitymeasurement.genericEnum;
 
-public enum LengthUnit{
+import com.apps.quantitymeasurement.quantityInterface.IMeasurable;
+
+public enum LengthUnit implements IMeasurable {
     FEET(12.0),
     INCHES(1.0),
     YARDS(36.0),

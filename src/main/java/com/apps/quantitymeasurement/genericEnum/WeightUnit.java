@@ -2,9 +2,11 @@
  * @author:LukeshGaydhane
  */
 
-package com.apps.quantitymeasurement;
+package com.apps.quantitymeasurement.genericEnum;
 
-public enum WeightUnit {
+import com.apps.quantitymeasurement.quantityInterface.IMeasurable;
+
+public enum WeightUnit implements IMeasurable {
     MILLIGRAM(0.001),
     GRAM(1.0),
     KILOGRAM(1000.0),
