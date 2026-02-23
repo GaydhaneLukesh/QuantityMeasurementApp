@@ -32,7 +32,7 @@ public class Quantity<U extends IMeasurable>{
        UC13 STEP 1 : Central Arithmetic Enum
        ========================================= */
 
-    private enum ArithmeticOperation {
+    public enum ArithmeticOperation {
         ADD((a, b) -> a + b),
         SUBTRACT((a, b) -> a - b),
         DIVIDE((a, b) -> {

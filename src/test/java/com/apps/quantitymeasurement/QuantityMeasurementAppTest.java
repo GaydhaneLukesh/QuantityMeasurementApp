@@ -9,8 +9,9 @@ import com.apps.quantitymeasurement.genericEnum.VolumeUnit;
 import com.apps.quantitymeasurement.genericEnum.WeightUnit;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
+import java.lang.reflect.Modifier;
 import java.lang.reflect.Method;
+
 public class QuantityMeasurementAppTest {
 
     @Test
@@ -110,27 +111,27 @@ public class QuantityMeasurementAppTest {
         assertNotEquals(length, weight);
     }
 
-        @Test
-        public void testGenericQuantity_ConstructorValidation_NullUnit() {
-            assertThrows(IllegalArgumentException.class, ()-> new Quantity<>(1.0, null));
-        }
+    @Test
+    public void testGenericQuantity_ConstructorValidation_NullUnit() {
+        assertThrows(IllegalArgumentException.class, ()-> new Quantity<>(1.0, null));
+    }
 
-        @Test
-        public void testGenericQuantity_ConstructorValidation_InvalidValue() {
-            assertThrows(IllegalArgumentException.class, ()-> new Quantity<>(Double.NaN, LengthUnit.FEET));
-        }
+    @Test
+    public void testGenericQuantity_ConstructorValidation_InvalidValue() {
+        assertThrows(IllegalArgumentException.class, ()-> new Quantity<>(Double.NaN, LengthUnit.FEET));
+    }
 
-        @Test
-        public void testGenericQuantity_Conversion_AllUnitCombinations_Length() {
-            Quantity<LengthUnit> q = new Quantity<>(1.0, LengthUnit.FEET);
+    @Test
+    public void testGenericQuantity_Conversion_AllUnitCombinations_Length() {
+        Quantity<LengthUnit> q = new Quantity<>(1.0, LengthUnit.FEET);
 
-            assertEquals(12.0, q.convertTo(LengthUnit.INCHES).getValue(), 0.0001);
-            assertEquals(0.3333, q.convertTo(LengthUnit.YARDS).getValue(), 0.01);
-            assertEquals(30.48, q.convertTo(LengthUnit.CENTIMETERS).getValue(), 0.01);
-        }
+        assertEquals(12.0, q.convertTo(LengthUnit.INCHES).getValue(), 0.0001);
+        assertEquals(0.3333, q.convertTo(LengthUnit.YARDS).getValue(), 0.01);
+        assertEquals(30.48, q.convertTo(LengthUnit.CENTIMETERS).getValue(), 0.01);
+    }
 
-        @Test
-        public void testGenericQuantity_Conversion_AllUnitCombinations_Weight() {
+    @Test
+    public void testGenericQuantity_Conversion_AllUnitCombinations_Weight() {
             Quantity<WeightUnit> q = new Quantity<>(1.0, WeightUnit.KILOGRAM);
 
             assertEquals(1000.0, q.convertTo(WeightUnit.GRAM).getValue(), 0.0001);
@@ -573,8 +574,6 @@ public class QuantityMeasurementAppTest {
             assertEquals(new Quantity<>(10.0, LengthUnit.FEET), a);
         }
 
-
-
         @Test
         void testRefactoring_Add_DelegatesViaHelper() {
             Quantity<LengthUnit> q1 = new Quantity<>(10.0, LengthUnit.FEET);
@@ -627,24 +626,25 @@ public class QuantityMeasurementAppTest {
             assertThrows(IllegalArgumentException.class, () -> q1.subtract(q2, null));
         }
 
-        @Test
-        void testArithmeticOperation_Add_EnumComputation() {
-            assertEquals(15.0, getOp("ADD").compute(10, 5));
-        }
+    @Test
+    void testArithmeticOperation_Add_EnumComputation() {
+        double result = Quantity.ArithmeticOperation.ADD.compute(10, 5);
+        assertEquals(15.0, result);
+    }
 
-        @Test
-        void testArithmeticOperation_Subtract_EnumComputation() {
-            assertEquals(5.0, getOp("SUBTRACT").compute(10, 5));
-        }
+    @Test
+    void testArithmeticOperation_Subtract_EnumComputation() {
+        assertEquals(5.0, Quantity.ArithmeticOperation.SUBTRACT.compute(10, 5));
+    }
 
         @Test
         void testArithmeticOperation_Divide_EnumComputation() {
-            assertEquals(2.0, getOp("DIVIDE").compute(10, 5));
+            assertEquals(2.0, Quantity.ArithmeticOperation.DIVIDE.compute(10, 5));
         }
 
         @Test
         void testArithmeticOperation_DivideByZero_EnumThrows() {
-            assertThrows(ArithmeticException.class, () -> getOp("DIVIDE").compute(10, 0));
+            assertThrows(ArithmeticException.class, () -> Quantity.ArithmeticOperation.DIVIDE.compute(10, 0));
         }
 
         @Test
@@ -722,15 +722,18 @@ public class QuantityMeasurementAppTest {
             new Quantity<>(2.0, VolumeUnit.LITRE).divide(new Quantity<>(1000.0, VolumeUnit.MILLILITRE));
         }
 
-        @Test
-        void testHelper_PrivateVisibility() throws Exception {
-            Method m = Quantity.class.getDeclaredMethod("performBaseArithmetic",
-                    Quantity.class,
-                    Enum.class,
-                    IMeasurable.class,
-                    boolean.class);
-            assertTrue(java.lang.reflect.Modifier.isPrivate(m.getModifiers()));
-        }
+    @Test
+    void testHelper_PrivateVisibility() throws Exception {
+        Method m = Quantity.class.getDeclaredMethod(
+                "performBaseArithmetic",
+                Quantity.class,
+                Quantity.ArithmeticOperation.class,
+                IMeasurable.class,
+                boolean.class
+        );
+
+        assertTrue(Modifier.isPrivate(m.getModifiers()));
+    }
 
         @Test
         void testValidation_Helper_PrivateVisibility() throws Exception {
@@ -750,25 +753,21 @@ public class QuantityMeasurementAppTest {
             assertEquals(new Quantity<>(11.0, LengthUnit.FEET), q);
         }
 
-        @Test
-        void testEnumConstant_ADD_CorrectlyAdds() {
-            assertEquals(10.0, getOp("ADD").compute(7, 3));
-        }
+    @Test
+    void testEnumConstant_ADD_CorrectlyAdds() {
+        Quantity.ArithmeticOperation op = Quantity.ArithmeticOperation.ADD;
+        assertEquals(10.0, op.compute(7, 3));
+    }
 
-        @Test
-        void testEnumConstant_SUBTRACT_CorrectlySubtracts() {
-            assertEquals(4.0, getOp("SUBTRACT").compute(7, 3));
-        }
+    @Test
+    void testEnumConstant_SUBTRACT_CorrectlySubtracts() {
+        Quantity.ArithmeticOperation op = Quantity.ArithmeticOperation.SUBTRACT;
+        assertEquals(4.0, op.compute(7, 3));
+    }
 
-        @Test
-        void testEnumConstant_DIVIDE_CorrectlyDivides() {
-            assertEquals(3.5, getOp("DIVIDE").compute(7, 2));
-        }
-
-        private Object getOp(String name) {
-            for (Object e : Quantity.class.getDeclaredClasses()[0].getEnumConstants()) {
-                if (e.toString().equals(name)) return e;
-            }
-            return null;
-        }
+    @Test
+    void testEnumConstant_DIVIDE_CorrectlyDivides() {
+        Quantity.ArithmeticOperation op = Quantity.ArithmeticOperation.DIVIDE;
+        assertEquals(3.5, op.compute(7, 2));
+    }
 }
