@@ -7,6 +7,8 @@ package com.apps.quantitymeasurement;
 import com.apps.quantitymeasurement.genericEnum.LengthUnit;
 import com.apps.quantitymeasurement.genericEnum.VolumeUnit;
 import com.apps.quantitymeasurement.genericEnum.WeightUnit;
+import com.apps.quantitymeasurement.interfaces.IMeasurable;
+import com.apps.quantitymeasurement.service.Quantity;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.lang.reflect.Modifier;

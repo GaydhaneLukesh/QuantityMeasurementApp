@@ -2,7 +2,9 @@
  * @author:LukeshGaydhane
  */
 
-package com.apps.quantitymeasurement;
+package com.apps.quantitymeasurement.service;
+
+import com.apps.quantitymeasurement.interfaces.IMeasurable;
 
 import java.util.function.DoubleBinaryOperator;
 
@@ -88,6 +90,7 @@ public class Quantity<U extends IMeasurable>{
     ) {
 
         validateArithmeticOperands(other, targetUnit, targetUnitRequired);
+        this.unit.validateOperationSupport(operation.name());
 
         double base1 = this.unit.convertToBaseUnit(this.value);
         double base2 = other.unit.convertToBaseUnit(other.value);
