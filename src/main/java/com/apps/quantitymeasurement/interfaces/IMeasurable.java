@@ -13,6 +13,5 @@ public interface IMeasurable {
     }
 
     default void validateOperationSupport(String operation){
-
     }
 }
