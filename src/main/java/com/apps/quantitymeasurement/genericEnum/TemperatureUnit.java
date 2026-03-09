@@ -1,3 +1,7 @@
+/**
+ * @author:LukeshGaydhane
+ */
+
 package com.apps.quantitymeasurement.genericEnum;
 
 import com.apps.quantitymeasurement.interfaces.IMeasurable;
@@ -39,6 +43,27 @@ public enum TemperatureUnit implements IMeasurable {
     @Override
     public double convertFromBaseUnit(double baseValue) {
         return fromBase.apply(baseValue);
+    }
+
+    @Override
+    public String getUnitName() {
+        return this.name();
+    }
+
+    @Override
+    public String getMeasurementType() {
+        return this.getClass().getSimpleName();
+    }
+
+    @Override
+    public IMeasurable getUnitInstance(String unitName) {
+        for(LengthUnit unit : LengthUnit.values()){
+            if(unit.name().equalsIgnoreCase(unitName)){
+                return unit;
+            }
+        }
+
+        throw new IllegalArgumentException("Invalid length unit: "+unitName);
     }
 
     @Override

@@ -4,9 +4,19 @@
 
 package com.apps.quantitymeasurement.interfaces;
 
+import com.apps.quantitymeasurement.interfaces.support.MeasurementFactory;
+
 public interface IMeasurable {
     public double convertToBaseUnit(double value);
     public double convertFromBaseUnit(double baseValue);
+
+    String getUnitName();
+    public String getMeasurementType();
+    public IMeasurable getUnitInstance(String unitName);
+
+    static IMeasurable getUnit(String measurementType, String unitName) {
+        return MeasurementFactory.getUnit(measurementType, unitName);
+    }
 
     default SupportsArithmetic supportsArithmetic(){
         return ()-> true;
