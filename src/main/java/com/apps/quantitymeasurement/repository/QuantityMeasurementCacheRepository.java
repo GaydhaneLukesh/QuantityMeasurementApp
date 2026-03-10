@@ -43,10 +43,10 @@ public class QuantityMeasurementCacheRepository implements IQuantityMeasurementR
     }
 
     private void saveToDisk(QuantityMeasurementEntity entity){
-        try (
+        try {
                 FileOutputStream fos = new FileOutputStream(FILE_NAME, true);
-                AppendableObjectOutputStream oos = new AppendableObjectOutputStream(fos)
-        ){
+                AppendableObjectOutputStream oos = new AppendableObjectOutputStream(fos);
+
             oos.writeObject(entity);
         } catch (IOException e) {
             System.out.println("Error saving entity: "+e.getMessage());

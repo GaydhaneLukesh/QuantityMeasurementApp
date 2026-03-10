@@ -2,25 +2,23 @@
  * @author:LukeshGaydhane
  */
 
-package com.apps.quantitymeasurement.genericEnum;
+package com.apps.quantitymeasurement.entity.genericEnum;
 
 import com.apps.quantitymeasurement.interfaces.IMeasurable;
 
-public enum WeightUnit implements IMeasurable {
-    MILLIGRAM(0.001),
-    GRAM(1.0),
-    KILOGRAM(1000.0),
-    POUND(453.592),
-    TONNE(1_000_000.0);
+public enum VolumeUnit implements IMeasurable {
+        MILLILITRE(1.0),
+        LITRE(1000.0),
+        GALLON(3785.412);
 
-    private final double conversionFactor;
+        private final double conversionFactor;
 
-    WeightUnit(double conversionFactor) {
+    VolumeUnit(double conversionFactor) {
         this.conversionFactor = conversionFactor;
     }
 
     public double getConversionFactor() {
-        return conversionFactor;
+            return conversionFactor;
     }
 
     public double convertToBaseUnit(double value){

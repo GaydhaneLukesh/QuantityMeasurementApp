@@ -2,7 +2,7 @@
  * @author:LukeshGaydhane
  */
 
-package com.apps.quantitymeasurement.genericEnum;
+package com.apps.quantitymeasurement.entity.genericEnum;
 
 import com.apps.quantitymeasurement.interfaces.IMeasurable;
 

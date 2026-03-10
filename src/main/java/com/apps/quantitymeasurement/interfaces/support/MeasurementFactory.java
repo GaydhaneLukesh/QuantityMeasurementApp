@@ -4,10 +4,10 @@
 
 package com.apps.quantitymeasurement.interfaces.support;
 
-import com.apps.quantitymeasurement.genericEnum.LengthUnit;
-import com.apps.quantitymeasurement.genericEnum.TemperatureUnit;
-import com.apps.quantitymeasurement.genericEnum.VolumeUnit;
-import com.apps.quantitymeasurement.genericEnum.WeightUnit;
+import com.apps.quantitymeasurement.entity.genericEnum.LengthUnit;
+import com.apps.quantitymeasurement.entity.genericEnum.TemperatureUnit;
+import com.apps.quantitymeasurement.entity.genericEnum.VolumeUnit;
+import com.apps.quantitymeasurement.entity.genericEnum.WeightUnit;
 import com.apps.quantitymeasurement.interfaces.IMeasurable;
 
 public class MeasurementFactory {

@@ -5,7 +5,6 @@
 package com.apps.quantitymeasurement.entity;
 
 import com.apps.quantitymeasurement.interfaces.IMeasurable;
-import com.apps.quantitymeasurement.model.QuantityModel;
 
 import java.io.Serializable;
 
@@ -77,6 +76,29 @@ public class QuantityMeasurementEntity implements Serializable{
         this(thisQuantity, thatQuantity, operation);
         this.errorMessage = errorMessage;
         this.isError = isError;
+    }
+
+    @Override
+    public String toString() {
+
+        String input1 = thisValue + " " + thisUnit + " (" + thisMeasurementType + ")";
+        String input2 = thatValue + " " + thatUnit + " (" + thatMeasurementType + ")";
+        String result;
+
+        if (isError) {
+            result = "ERROR: " + errorMessage;
+        }
+        else if (resultString != null) {
+            result = resultString;
+        }
+        else {
+            result = resultValue + " " + resultUnit + " (" + resultMeasurementType + ")";
+        }
+
+        return "Operation: " + operation +
+                " | Input1: " + input1 +
+                " | Input2: " + input2 +
+                " | Result: " + result;
     }
 }
 

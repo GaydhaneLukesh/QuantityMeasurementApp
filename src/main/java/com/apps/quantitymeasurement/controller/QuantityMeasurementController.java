@@ -5,7 +5,10 @@
 package com.apps.quantitymeasurement.controller;
 
 import com.apps.quantitymeasurement.dto.QuantityDTO;
+import com.apps.quantitymeasurement.entity.QuantityMeasurementEntity;
 import com.apps.quantitymeasurement.service.IQuantityMeasurementService;
+
+import java.util.List;
 
 public class QuantityMeasurementController {
 
@@ -41,5 +44,9 @@ public class QuantityMeasurementController {
 
     public double performDivision(QuantityDTO thisQuantityDTO, QuantityDTO thatQuantityDTO){
         return quantityMeasurementService.divide(thisQuantityDTO, thatQuantityDTO).getValue();
+    }
+
+    public List<QuantityMeasurementEntity> getAllRecords() {
+        return quantityMeasurementService.getAllMeasurementRecords();
     }
 }

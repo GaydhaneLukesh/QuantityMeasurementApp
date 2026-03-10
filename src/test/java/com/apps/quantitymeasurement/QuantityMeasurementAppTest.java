@@ -4,8 +4,8 @@
 
 package com.apps.quantitymeasurement;
 
-import com.apps.quantitymeasurement.genericEnum.LengthUnit;
-import com.apps.quantitymeasurement.genericEnum.WeightUnit;
+import com.apps.quantitymeasurement.entity.genericEnum.LengthUnit;
+import com.apps.quantitymeasurement.entity.genericEnum.WeightUnit;
 import com.apps.quantitymeasurement.interfaces.IMeasurable;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
